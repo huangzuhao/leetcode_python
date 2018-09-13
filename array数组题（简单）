@@ -1,0 +1,214 @@
+1、两数之和，一个整数组和一个目标值，找出数组和为目标值的两个数并返回它们序列号
+#方法一
+class solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        dic = dict()
+        for index, value in enumerate(nums):
+            sub = target - value
+            if sub in dic:
+                return [dic[sub], index]
+            else:
+                dic[value] = index
+#方法二
+class solution:
+  def twoSum(self, nums, target):
+         for i in range(len(nums)):
+             sub = target - nums[i]
+             if sub in nums:
+                  j = nums.index(sub)
+                  if j != i:
+                      return i,j
+                      
+26、删除排列数组的重复项，原地删除重复项元素，返回移除后的新数组的长度并且元素按顺序排列
+class solution:
+    def removeDuplicates(self,nums):
+        """
+        :type nums:List[int]
+        :rtype:int
+        """
+        if not nums:
+                return 0
+        index = 0
+        for i in range(1, len(nums)):
+              if nums[i] != nums[index]:
+                    nums[index] = nums[i]
+                    index += 1
+         return index
+         
+27、移除元素，给定一个数组nums和一个目标值val，原地删除数值等于目标值的元素，然后返回移除后数组的长度
+class solution:
+    def removeElement(self, nums, value):
+    """
+    :type nums: List[int]
+    :type value: int
+    :rtype :int
+    """
+    if not nums:
+            return 0
+    index = 0
+    for i in range(nums):
+            if nums[i] != value:
+                    nums[index] = nums[i]
+                    index += 1
+     return index
+     
+35、搜索插入位置，给定一个排序数组和一个目标值，在数组找到目标值并返回其索引值，如果不存在目标值则返回其要被插入的位置序列号
+class solution:
+    def searchInsert(self, nums, target):
+        """
+        :type nums:List[int]
+        :type target:int
+        :rtype:int
+        """
+        if not nums：
+                return 0
+        if target  in nums:
+                return nums.index(target)
+        else:
+                if target < nums[0]:
+                        return 0
+                if target > nums[len(nums)-1]:
+                        return len(nums)
+                for i in range(len(nums)-1)：
+                        if nums[i] < target < nums[i+1]:
+                                return i+1
+#方法二：使用二分查找，减少时间复杂度
+class solution:
+    def searchInsert(self, nums, target):
+        """
+        :type nums:List[int]
+        :type target:int
+        :rtype:int
+        """
+        left = 0
+        right = len(nums)
+        while left < right:
+                mid = (left + right)//2
+                if nums[mid] == target:
+                        return mid
+                 elif nums[mid] < target:
+                        left = mid + 1
+                 else:
+                        right = mid
+        return left
+        
+53、给定一个数组nums，找到一个最大和的连续数组子数组，返回其最大和（子数组最少一个元素）
+class solution:
+    def findMaxarray(self, nums):
+        """
+        :type nums:List[int]
+        :rtype:int
+        """
+        curSum = maxSum = nums[0]
+        for i in nums:
+                curSum = max(nums[i], nums[i]+curSum)
+                maxSum = max(maxSum, curSum)
+        return maxSum
+ 66、加一：给定一个数组，在该数的基础上加1
+ class solution:
+    def addOne(self, nums):
+        """
+        :type nums:List[int]
+        :rtype : int
+        """
+        sum = 0
+        for i in nums:
+                sum = sum*10 + i
+        return [int(x) for x in str(sum+1)]
+  88、合并两个有序数组，两个数组合为一个有序数组
+  class solution:
+    def mergeNums(self, nums1, m, nums2, n):
+        """
+        :type nums1:List[int]
+        :type m:int
+        :type nums2:List[int]
+        :type n:int
+        :rtype : List[int]
+        """
+        while m > 0 and n > 0 :
+                if nums1[m-1] > nums2[n-1]:
+                        nums1[n+m-1] = nums1[m-1]
+                        m -= 1
+                else:
+                        nums1[n+m-1] = nums2[n-1]
+                        n -= 1
+        if n > 0:
+                nums1[:n] = nums2[:n]
+118、杨辉三角
+    class solution:
+        def generate(self, numRows):
+                """
+                :rtype numRows:int
+                :rtype : List[List[]]
+                """
+                if numRows == 0:
+                        return []
+                red = [1]
+                for i in range(1, numRows):
+                        red.append(map(lambda x,y:x+y,red[-1]+[0], [0]+red[-1]
+                return red
+121、买卖股票最佳时间段
+class solution:
+    def bestProfit(self, nums):
+        """
+        :type nums:List[int]
+        :rtype : int
+        """
+        curSum = maxSum = 0
+        for i in range(1,len(nums)):
+                curSum = max(0,curSum+nums[i]-nums[i-1])
+                maxSum = max(maxSum,curSum)
+         return maxSum
+  122、买卖股票最佳时间II
+  class solution:
+          def bestProfit(self,prices):
+                  """
+                  :type prices:List[int]
+                  :rtype : int
+                  """
+                  return sum(max(prices[i+1]-prices[i],0) for i in range(len(prices)-1)
+        
+  167、两数之和II，输入有序数组：一个为有序数组，一个为目标值，返回数组里的两数之和为目标值的下标序号
+  class solution:
+          def twoSum(self, nums, target):
+                  """
+                  :type nums:List[int]
+                  :type target:int
+                  :rtype:int
+                  """
+                  if not nums:
+                          return 0
+                  dic = dict()
+                  for i in range(len(nums)):
+                          sub = target - nums[i]
+                          if sub in dic.key():
+                                  return [dic[sub]+1, i+1]
+                          else:
+                                  dic[nums[i]] = i
+                  return []
+    169、求众数：返回一个数组的众数值，其中众数值数目大于n/2
+    class solution:
+            def majoriy=tyNum(self,nums):
+                    """
+                    :type nums:List[int]
+                    :rtype : int
+                    """
+                    ls = set(nums)
+                    n = len(nums)
+                    for i in ls:
+                            if nums.count(i) > (n//2):
+                                    return i
+    189、旋转数组：讲一个数组的元素向右移动K个位置
+    class solution:
+            def rotate(self, nums):
+                    """
+                    :type nums:List[int]
+                    :rtype : int
+                    """
+                    nums[:] = nums[len(nums)-k] + nums[:len(nums)-k]
+        
