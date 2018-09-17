@@ -1,0 +1,154 @@
+217、存在重复元素：一个数组存在两个或两个以上的相同的元素，返回True，否则为False
+class solution:
+    def containsDuplicate(self, nums):
+            """
+            :type nums:List[int]
+            :rtype : bool
+            """
+            return len(set(nums)) != len(nums)
+            
+219、存在重复元素II：给定一个数组和一个数字K，判断数组是否存在两个不同的索引I和索引J，有nums[i] = nums[j],并且绝对值小于等于K
+class solution:
+    def findDuplicate(self, nums, k):
+        """
+        :type nums:List[int]
+        :type k: int
+        :rtype : bool
+        """
+        dic = dict()
+        for index, value in enumerate(nums):
+            if value in dic.val() and index - dic[value] <= k:
+                return True
+            else:
+                dic[value] = index
+        return False
+268、缺失数字：给定一个N个数的序列，找出序列缺失的那个数
+class solution:
+    def findMissing(self,nums):
+        """
+        :type nums:List[int]
+        :rtype : int
+        """
+        n = len(nums)
+        return n*(n+1)//2 - sum(nums)
+        
+283、移动数字0：给定一个数组，把所有的零都排到后面，同时保持其他元素的顺序不变
+class solution:
+    def moveZeros(self, nums):
+        """
+        :type nums:List[int]
+        :rtpe:List[int]
+        """
+        index = 0
+        for i in nums:
+            if i != 0:
+                nums[index] = i
+                index += 1
+        for j in range(index, len(nums)):
+            nums[j] = 0
+  
+414、给定一个范围数组[1,N],N=数组大小，找出数组里没有出现在范围内的数值，并返回该数值
+class solution:
+    def findDisappearednum(self, nums):
+            """
+            :type nums:List[int]
+            :rtype : int
+            """
+            return list(set(range(1,len(nums)+1)) - set(nums))
+        
+448、第三大的数字：给定一个非空数组返回其第三大的数值，如果没有则返回最大数值
+class solution:
+    def thirdnum(self, nums):
+            """
+            :type nums:List[int]
+            :rtype : int
+            """
+            if len(nums) < 3:
+                    return nums.max()
+            else:
+                    return sorted(set(nums),reverse=True)[2]
+                    
+485、最大连续数组：求数组某个数字连续出现的最大次数
+class solution:
+        def mostnum(self, nums):
+            """
+            :type nums:List[int]
+            :rtype : int
+            """
+            curSum = maxSum = 0
+            for i in range(1,len(nums)):
+                    if nums[i] == nums[i-1]:
+                            curSum += 1
+                            maxSum = max(maxSum, curSum)
+                    else:
+                            curSum = 0
+            return maxSum
+      
+532、给定一个数组求K-Diff数对：给定一个数组和一个整数K，找出数组里所有的元素的和为K值的数组对数。
+class solution:
+        def findPairs(self, nums, k):
+                """
+                :type nums:List[nums]
+                :rtype : int
+                """
+                if k > 0:
+                        return len(set(n+k for n in nums) & set(nums))
+                elif k == 0:
+                        return sum(v>1 for v in collections.Counter(nums).values())
+                else:
+                        return 0
+                        
+561、数组拆分I：给定长度为2n的数组，使得数组分为n对，例如（a1,b1),(a2,b2)...(an,bn),使得从1到N的min(ai,bi)总和最大。
+class solution:
+        def arrayPairSum(self, nums):
+                """
+                :type nums:List[int]
+                :rtype : int
+                """
+                return sum(sorted(nums)[::2])
+                
+566、重塑矩阵：将一个矩阵重塑为另一个新的矩阵，保留其原始数据。r c 分别为矩阵的行列数
+class solution:
+        def reshapeMatrix(self, nums, r, c):
+                """
+                :type nums: List[int]
+                :type r:int
+                :type c:int
+                :rtype : List[List[int]]
+                """
+                #判断矩阵数和要求变化后的矩阵数是否一致？
+                if len(nums) * len(nums[0]) != r*c:
+                        return nums
+                else:
+                        #将矩阵变为一维的向量再变为要求的矩阵形式
+                        oenrow = [nums[i][j] for i in range(len(nums)) for j in range(len(nums[0]))]
+                        return [onerow[t*c:(t+1)*c] for t in range(r)]
+                        
+581、最短无序连续子数组：给定一个整数组，找出一个联系的最短子数组，输出它的长度。
+class solution:
+        def shortestArr(self, nums):
+                """
+                :type nums:List[int]
+                :rtype : int
+                """
+                all_same = [a==b for (a,b) in zip(nums, sorted(nums)]
+                return 0 if all(all_same) else len(nums)-all_same.index(False)-all_same[::-1].index(False)
+                
+     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
