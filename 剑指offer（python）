@@ -1,0 +1,143 @@
+1、在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
+   请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+   """
+   类似二分查找,如果拿数组的元素跟目标值比较，如果大于该元素则目标值应该位于该元素的下方或右侧；如果小于该元素，则目标值位于元素上方或者左侧的位置
+   ，这里需要两个指针来记录元素位置（行row和列col）,二维数组的查找，两个指针一个上下移动一个左右移动，两个指针可以同一个角度出发，也可不同的角度
+   出发。row=0，col=0,考虑为什么从右上角指针出发查找。
+   class solution:
+      def Find(self, target, array):
+          if not array:
+              return False
+          col = len(nums)-1
+          row = 0
+          while col > 0 and row < len(nums):
+              if array[row][col] == target:
+                  return False
+              elif array[row][col] < target:
+                  row += 1
+              else:
+                  col -= 1
+          return False
+          
+2、替换空格：给定一个字符串，把其中的‘ ’空格位置替换成‘%20’，形成新的字符串并返回
+class solution:
+    def replaceSpace(self,s):
+        if not s:
+            return False
+        s = list(s)
+        for i in range(len(s)):
+            if s[i] == ' ':
+                s[i] = '%20'
+        return ''.join(s)
+
+3、从头到尾打印链表
+class solution：
+   def printListFromTailToHead(self, lsitNode):
+          p = listNode
+          stack = []
+          res = []
+          while p:
+              stack.append(p.val)
+              p = p.next
+          for i in range(len(listNode)-1,-1,-1):
+              res.append(stack[i])
+          return res
+
+4、重建二叉树：给出前序遍历和中序遍历，要求重建二叉树
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.rught = None
+class solution:
+    def reConstrucBinaryTrees(self, pre, tin):
+            if len(pre) == 0:
+                return None
+            if len(pre) == 1:
+                return TreeNode(pre[0])
+            else:
+                res = TreeNode(pre[0])
+                res.left = self.reConstrucBinaryTrees(pre[1:tin.index(pre[0])+1], tin[:tin.index(pre[0])])
+                res.right = self.reConstrucBinaryTrees(pre[tin.index(pre[0])+1 : ], tin[tin.index(pre[0]) + 1:])
+            return res
+
+5、用两个栈实现队列：用两个栈来完成队列的pop 和 push操作，队列的元素为Int
+class solution:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+    def push(self, node):
+        self.stack1.append(node)
+    def pop(self):
+        if not self.stack1:
+            return None
+        while self.stack1:
+            self.stack2.append(self.stack1.pop())
+        res = self.stack2.pop()
+        while self.stack2:
+            self.stack1.append(self.stack2.pop())
+        return res
+
+6、旋转数组的最小值：给定一个非减排序数组，找到并返回其最小值
+class solution:
+    def minNumberinRotetaArray(self,rotateArraya):
+            if not rotateArray:
+                return 0
+            for i in range(len(rotateArray)-1):
+                if ratateArray[i] > ratateArray[i+1]:
+                    return rotateArray[i+1]
+            return rotateArray[0]
+
+7、斐波那契数列：给定一个整数int，返回第int个斐波那契数
+class solution:
+    def Fibonacci(self, k):
+        if k < 0:
+            return 0
+        a = b =1
+        for i in range(2,k):
+            a, b = b, a+b
+        return b
+
+8、跳台阶：一次可以跳一步或者两步，当总共有n阶台阶的时候，总共有多少种跳法
+class solution:
+    def jumpNum(self, number):
+            if number <= 0:
+                return 0
+            if number == 1:
+                return 1
+            if number == 2:
+                return 2
+            res = [1, 2]
+            for i in range(2, number):
+                res.append(res[-2] + res[-1])
+            return res[-1]
+
+9、进阶版跳台阶：每一次跨过的台阶可以是任意阶数（一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法
+）反向思考，当n阶台阶时（f(n) = f(1)+f(2)+...+f(n-1)+1
+class solution:
+    def jumpNum(self, number):
+            if number <= 0:
+                return 0
+            res = []
+            epoch = 0
+            for i in range(0,number):
+                    res.append(epoch+1)
+                    epoch = epoch*2+1
+            return res[-1]
+
+10、矩阵覆盖:有一个矩阵为2x1，求当有一块2xN的矩形用该矩阵覆盖时，能有多少种方法覆盖，2*1矩阵可以横向也可以竖向放置
+    思考：反向思考下n的时候，n-1的时候放置一块竖向的2*1，和n-2的时候放置两块2*1的横向。推出：f(n)=f(n-1) + f(n-2)
+class solution:
+    def rectCover:(self, number):
+            if numebr == 0:
+                return 0
+            if number <= 2:
+                return number
+            res = [1, 2]
+            for i in range(2, number):
+                res.append(res[-1] + res[-2])
+            return res[-1]
+
+        
+        
+        
