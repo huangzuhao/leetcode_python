@@ -138,6 +138,113 @@ class solution:
                 res.append(res[-1] + res[-2])
             return res[-1]
 
+11、二进制中的1的个数：输入一个整数，输出该数二进制表示中1的个数，其中负数用补码表示。
+class solution:
+      def Number1(self, n):
+            count = 0
+            n = n & 0xffffffff
+            while n:
+                  n = n & (n-1)
+                  count += 1
+            return count
+
+12、数值的整数次方：给定一个double类型的base值，和一个整数型的exponent值，求base的exponent的次方
+class solution:
+      def power(self, base, exponent):
+                  flig = 0
+                  if base == 0:
+                        return 0
+                  if exponent == 0:
+                        return 1
+                  if exponent < 0:
+                        flig = 1
+                  result = 1
+                  for i in range(abs(exponent)):
+                        result *= base
+                  if flig = 1:
+                        result = 1/result
+                  return result
+
+13、数组的元素奇数排在前面，偶数排在后面，并且元素间的原始相对位置不变
+class solution:
+      def arraySort(self, nums):
+            left = []
+            right = []
+            for i in array:
+                  if i % 2 == 0:
+                        left.append(i)
+                  else:
+                        right,append(i)
+            return left + right
+
+14、链表的倒数第K个值：输入一个链表，求其倒数第K个值
+class solution:
+      def Listnodefindk(self, head, k):
+            if not head or k <= 0:
+                  return None
+            stack = []
+            p = head
+            while head:
+                  stack.append(p)
+                  p = p.next
+            if len(stack) < k:
+                  return None
+            else:
+                  return stack[len(stack)-k]
+
+15、反转链表：反转链表后，输出链表的所有元素
+class solution:
+      """
+      class Listnode:
+            def __init__(self,x)
+            self.val = x
+            self.next = None
+      """
+      def ReverseList(self, pHead):
+            if pHead == 0 or pHead.next == 0:
+                  return None
+            newHead = None
+            while pHead:
+                  temp = pHead.next
+                  pHead.next = newHead
+                  newHead = pHead
+                  pHead = temp
+             return newHead
+
+16、合并链表：思路：初始化两个链表头，其中一个表头用以记录两个单调递增链表比较后的结果，另一个用以返回结果。
+
+用while循环：
+
+①如果两个链表不为空，比较进行，并将小的那个赋给合并的链表头。小表头继续走一步，合并表头继续走一步。
+
+②如果两个链表有其一为空，那么跳出循环，并将另一不为null的链表的后续部分赋给合并链表。
+class solution:
+      """
+      def __init__(self,x):
+            self.val = x
+            self.next = None
+      """
+      def merge(self, head1, head2):
+            q = dummy = ListNode(-1)
+            p1 = head1
+            p2 = head2
+            while p1 and p2:
+                  if p1.val < p2.val:
+                        q.next = p1
+                        q = p1
+                        p1 = p1.next
+                  else:
+                        q.next = p2
+                        q = p2
+                        p2 = p2.next
+           if p1:
+               q.next = p1
+           if p2:
+               q.next = p2
+           return dummy.next
+      
+                  
+            
         
         
         
