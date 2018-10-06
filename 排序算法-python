@@ -1,0 +1,78 @@
+1、插入排序：标从1开始，每次判断元素后插入左边排好序的相应位置；最理想的排序时间复杂度为线性n，最坏情况为1+2+3+。。。+（N-1）=n(n-1)/2=n^2
+           空间复杂度为O(1)；
+           稳定。
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+class insertSort():
+    def __init__(self, lis=None):
+        self.r = lis
+    
+    def insert_sort(self):
+        lis = self.r
+        for i in range(1, len(lis)):
+            j = i
+            while j>0 and lis[j] < lis[j-1]:
+                lis[j], lis[j-1] = lis[j-1], lis[j]
+                j -= 1
+    def __str__(self):
+        str = ""
+        for i in range(self.r):
+              str += "%s" %i
+        return str
+if __name__ = '__main__':
+    sqlist = insertSort([8, 5, 9, 2, 6, 0])
+    sqlist.insert_sort()
+    print(sqlist)
+    
+    
+2、冒泡排序：循环比较相邻元素的大小是否满足升序，否则交换。每一轮循环都将该轮次的最大值沉到最后。
+            时间复杂度O=n+(n-1)+(n-2)+...+1=N^2
+            空间复杂度o(1)；
+            稳定。
+            
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+def bubble_sort(array):
+    if not array:
+        return None
+    for i in range(len(array)-1, -1, -1):    #外循环i
+        for j in range(i):                   #内循环j
+            if array[j] > array[j+1]:        #最大数下沉
+                array[j], array[j+1] = array[j+1], array[j]
+        print(array)   #查看每轮次的交换情况，跟踪调试
+def main():
+    a = [2, 58, 69, 43, 23, 56, 3, 9]
+    bubble_sort(a)
+    print(a)
+if __name__ = '__main__'(): main()
+
+3、简单选择排序：每次选择无序元素中最小的元素值，并将其置于无序元素列表的第一个位置，时间复杂度为N^2
+                空间复杂度O(1)；
+                不稳定。
+#!/usr/bin/env python
+# -*- coding:utf-8 -*
+
+def select_sort(array):
+    if not array:
+        return None
+    for i in range(len(array)):
+        m = i
+        for j in range(i+1, len(array)):
+            if array[j] < array[m]:
+                m = j
+        array[i], array[m] = array[m], array[i]
+        print(array)  #跟踪调试
+def main():
+    a = [15, 2, 36, 89, 54, 36, 7]
+    select_sort(a)
+    print(a)
+    
+
+4、
+  
+
+
+    
+    
